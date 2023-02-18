@@ -127,10 +127,11 @@ setup.getdmazeobjectsimage = function(txt) {
 /* check if object is already taken at coordinates */
 setup.getdmazeobjectstaken = function(txt) {
         return Boolean(state.active.variables.dmazeobjectstaken[txt]);
-}</script><tw-passagedata pid="1" name="StoryInit" tags="" position="375,0" size="100,100">&lt;&lt;set $hasnumber to false&gt;&gt;
+}</script><tw-passagedata pid="1" name="StoryInit" tags="" position="975,0" size="100,100">&lt;&lt;set $hasnumber to false&gt;&gt;
 &lt;&lt;set $myhints to [ &quot;Kw&quot;, &quot;NA&quot;, &quot;MQ&quot;, &quot;NA&quot;, &quot;MQ&quot;, &quot;NQ&quot;, &quot;MA&quot;, &quot;OA&quot;, &quot;NQ&quot;, &quot;NA&quot;, &quot;Mg&quot;, &quot;Ng&quot; ] &gt;&gt;
 &lt;&lt;set $numhints to -1&gt;&gt;
 &lt;&lt;set $number to &#39;&#39;&gt;&gt;
+&lt;&lt;set $dmazetunnel to []&gt;&gt;
 &lt;&lt;set $dmazex to 4&gt;&gt;
 &lt;&lt;set $dmazexmax to 9&gt;&gt;
 &lt;&lt;set $dmazey to 4&gt;&gt;
@@ -141,13 +142,13 @@ setup.getdmazeobjectstaken = function(txt) {
 &lt;&lt;set $dmazeobjectsimage to { &quot;1-1&quot; : &quot;./images/cable.png&quot;, &quot;2-2&quot; : &quot;./images/dial.png&quot;, &quot;3-3&quot; : &quot;./images/handset.png&quot;, &quot;5-5&quot; : &quot;./images/phonebooth.png&quot; , &quot;6-6&quot; : &quot;./images/phonecard.png&quot; }&gt;&gt;
 &lt;&lt;set $dmazeobjectstaken to { &quot;1-1&quot; : false, &quot;2-2&quot; : false, &quot;3-3&quot; : false , &quot;5-5&quot; :  false , &quot;6-6&quot; : false }&gt;&gt;
 &lt;&lt;set $dmazeobjectsinv to []&gt;&gt;
-&lt;&lt;set $dmazeobjectsbooth to []&gt;&gt;</tw-passagedata><tw-passagedata pid="2" name="dummy" tags="" position="0,125" size="100,100">pass 
+&lt;&lt;set $dmazeobjectsbooth to []&gt;&gt;</tw-passagedata><tw-passagedata pid="2" name="dummy" tags="" position="1125,0" size="100,100">pass 
 ( Comments not allowed in section with StoryData, StoryInit, StoryTitle.
   Therefore create empty passage which is not used)
 
 
 /* Included passage: phonebuzzwords */
-/* -------------------------------- */</tw-passagedata><tw-passagedata pid="3" name="buzzwords" tags="" position="600,0" size="100,100">&lt;&lt;set $phonebuzzwords to
+/* -------------------------------- */</tw-passagedata><tw-passagedata pid="3" name="buzzwords" tags="" position="600,150" size="100,100">&lt;&lt;set $phonebuzzwords to
   [
         &#39;Telefon&#39;,
         &#39;Münztelefon&#39;,
@@ -207,7 +208,7 @@ setup.getdmazeobjectstaken = function(txt) {
 /* Intro phase:           */
 /* ====================== */
 /* Traumreise - intro01   */
-/* ---------------------- */</tw-passagedata><tw-passagedata pid="4" name="intro01" tags="" position="475,100" size="100,100">Ich freue mich extrem auf morgen!&lt;br&gt;
+/* ---------------------- */</tw-passagedata><tw-passagedata pid="4" name="intro01" tags="" position="0,25" size="100,100">Ich freue mich extrem auf morgen!&lt;br&gt;
 Dann geht es endlich los mit der Traumreise, auf die ich schon so lange gewartet habe.&lt;br&gt;
 Es soll ein abenteuerliche Traumreise zu unbekannten und spannenden Schätzen werden.&lt;br&gt;
 Ich freue mich wirklich extrem auf morgen !&lt;br&gt;
@@ -224,7 +225,7 @@ Ich bin zuversichtlich, dass alles klappt !&lt;br&gt;
 
 
 /* Traumreise - intro02   */
-/* ---------------------- */</tw-passagedata><tw-passagedata pid="5" name="intro02" tags="" position="600,100" size="100,100">Es ist schon alles gepackt und steht bereit.&lt;br&gt;
+/* ---------------------- */</tw-passagedata><tw-passagedata pid="5" name="intro02" tags="" position="150,25" size="100,100">Es ist schon alles gepackt und steht bereit.&lt;br&gt;
 Die nötigen Dokumente habe ich ebenfalls organisiert und die liegen ebenfalls bereit.&lt;br&gt;
 Sowohl geistig als körperlich bin ich auf die Abenteuer bestens vorbereitet.&lt;br&gt;
 &lt;br&gt;
@@ -236,7 +237,7 @@ Das beste ist wohl, ich leg mich [[schlafen|sleeping01]].&lt;br&gt;
 /* Initial phase:         */
 /* ====================== */
 /* we are sleeping         */
-/* ---------------------- */</tw-passagedata><tw-passagedata pid="6" name="sleeping01" tags="" position="0,250" size="100,100">&lt;&lt;if visited() &gt; 1&gt;&gt;Zum Glück kann ich sofort wieder einschlafen.&lt;br&gt;&lt;br&gt;&lt;&lt;/if&gt;&gt;
+/* ---------------------- */</tw-passagedata><tw-passagedata pid="6" name="sleeping01" tags="" position="0,175" size="100,100">&lt;&lt;if visited() &gt; 1&gt;&gt;Zum Glück kann ich sofort wieder einschlafen.&lt;br&gt;&lt;br&gt;&lt;&lt;/if&gt;&gt;
 Ich schlafe friedlich vor mich hin.&lt;br&gt;
 &lt;br&gt;
 Plötzlich höre ich etwas... Höre ich da nicht ein Telefon ?&lt;br&gt;
@@ -252,7 +253,7 @@ Soll ich [[weiter schlafen|sleeping01]] oder [[den Anruf beantworten|sleeping02]
 
 
 /* picking up the phone   */
-/* ---------------------- */</tw-passagedata><tw-passagedata pid="7" name="sleeping02" tags="" position="150,250" size="100,100">&lt;&lt;if visited() &gt; 1&gt;&gt;Erneut drehe ich &lt;&lt;else&gt;&gt;Ich drehe &lt;&lt;/if&gt;&gt;mich um und nehme den Hörer ab. Ausser einem Rauschen höre ich &lt;&lt;if visited() &gt; 1&gt;&gt;wieder &lt;&lt;/if&gt;&gt; nichts.&lt;br&gt;
+/* ---------------------- */</tw-passagedata><tw-passagedata pid="7" name="sleeping02" tags="" position="150,175" size="100,100">&lt;&lt;if visited() &gt; 1&gt;&gt;Erneut drehe ich &lt;&lt;else&gt;&gt;Ich drehe &lt;&lt;/if&gt;&gt;mich um und nehme den Hörer ab. Ausser einem Rauschen höre ich &lt;&lt;if visited() &gt; 1&gt;&gt;wieder &lt;&lt;/if&gt;&gt; nichts.&lt;br&gt;
 Die Gegenstelle hängt &lt;&lt;if visited() &gt; 1&gt;&gt;wieder &lt;&lt;/if&gt;&gt;auf.&lt;br&gt;
 &lt;br&gt;
 Was war das ? Wer war das ?&lt;br&gt;
@@ -267,7 +268,7 @@ Egal, ich bin zu müde für solche Überlegungen, ehrlich.&lt;br&gt;
 
 
 /* we are awake lets get up */
-/* ------------------------ */</tw-passagedata><tw-passagedata pid="8" name="awake01" tags="" position="0,400" size="100,100">Wegen dieser vielen Anrufe kann und will ich nicht mehr schlafen.&lt;br&gt;
+/* ------------------------ */</tw-passagedata><tw-passagedata pid="8" name="awake01" tags="" position="0,325" size="100,100">Wegen dieser vielen Anrufe kann und will ich nicht mehr schlafen.&lt;br&gt;
 Ich bin nun hellwach und überlege, wer wohl warum angerufen hat. Der Anruf hat sicher etwas mit meiner Traumreise zu tun. 
 Wenn ich nur die Nummer wüsste, von der aus angerufen wurde. Dann könnte ich zurückrufen und dem Geheimniss auf die Spur kommen.&lt;br&gt;
 &lt;br&gt;
@@ -278,7 +279,7 @@ Soll ich [[das Telefon|awake02]] oder [[den Telefonbeantworter|awake03]] kontrol
 
 
 /* check phone display    */
-/* ---------------------- */</tw-passagedata><tw-passagedata pid="9" name="awake02" tags="" position="150,450" size="100,100">Auf der Anzeige des Telefons sehe ich keinen eingegangenen Anruf. 
+/* ---------------------- */</tw-passagedata><tw-passagedata pid="9" name="awake02" tags="" position="150,325" size="100,100">Auf der Anzeige des Telefons sehe ich keinen eingegangenen Anruf. 
 Das ist merkwürdig, ich wurde ja durch die Anrufe aufgeweckt und habe sie abgenommen.&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;if visited(&quot;awake03&quot;) &gt; 0 &gt;&gt;Lass mich mal genau [[überlegen|awake04]]
@@ -287,7 +288,7 @@ Das ist merkwürdig, ich wurde ja durch die Anrufe aufgeweckt und habe sie abgen
 
 
 /* check answering machine */
-/* ----------------------- */</tw-passagedata><tw-passagedata pid="10" name="awake03" tags="" position="300,325" size="100,100">Der Telefonbeantworter zeigt keinen eingegangenen Anruf an. 
+/* ----------------------- */</tw-passagedata><tw-passagedata pid="10" name="awake03" tags="" position="450,325" size="100,100">Der Telefonbeantworter zeigt keinen eingegangenen Anruf an. 
 Das ist merkwürdig, ich wurde ja durch die Anrufe aufgeweckt und habe sie abgenommen.&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;if visited(&quot;awake02&quot;) &gt; 0 &gt;&gt;Lass mich mal genau [[überlegen|awake04]] ...
@@ -296,7 +297,7 @@ Das ist merkwürdig, ich wurde ja durch die Anrufe aufgeweckt und habe sie abgen
 
 
 /* all checked, lets think */
-/* ----------------------- */</tw-passagedata><tw-passagedata pid="11" name="awake04" tags="" position="300,500" size="100,100">Habe ich diese Anrufe wirklich gekriegt oder habe ich das nur geträumt ?&lt;br&gt;
+/* ----------------------- */</tw-passagedata><tw-passagedata pid="11" name="awake04" tags="" position="300,450" size="100,100">Habe ich diese Anrufe wirklich gekriegt oder habe ich das nur geträumt ?&lt;br&gt;
 Ich bin mir auf jedenfall sicher, dass es etwas wichtiges war und ich die Nummer, die mir angerufen hat, herausfinden muss.&lt;br&gt;
 &lt;br&gt;
 &lt;&lt;if visited() &gt; 1 &gt;&gt;Vielleicht muss ich dem Geheimniss ja im Schlaf und im Reich der Träume auf den Grund gehen, wer weiss ?&lt;br&gt;
@@ -310,7 +311,7 @@ Soll ich [[weiter überlegen|awake04]] ?
 /* entering dreaming phase */
 /* ======================= */
 /* dreamland - entry 01 */
-/* ----------------------- */</tw-passagedata><tw-passagedata pid="12" name="dreamentry01" tags="" position="450,400" size="100,100">Ich versinke ganz langsam im Reich der Träume ...&lt;br&gt;
+/* ----------------------- */</tw-passagedata><tw-passagedata pid="12" name="dreamentry01" tags="" position="0,600" size="100,100">Ich versinke ganz langsam im Reich der Träume ...&lt;br&gt;
 &lt;&lt;timed 2s transition&gt;&gt;
 ... tiefer ... &lt;br&gt;&lt;&lt;next&gt;&gt;
 ... und tiefer ...&lt;br&gt;&lt;&lt;next&gt;&gt;
@@ -323,7 +324,7 @@ Soll ich [[weiter überlegen|awake04]] ?
 
 
 /* dreamland - entry 02 */
-/* ----------------------- */</tw-passagedata><tw-passagedata pid="13" name="dreamentry02" tags="" position="450,400" size="100,100">Ich spüre wie ich langsam im Reich der Träume ankomme ...&lt;br&gt;
+/* ----------------------- */</tw-passagedata><tw-passagedata pid="13" name="dreamentry02" tags="" position="150,600" size="100,100">Ich spüre wie ich langsam im Reich der Träume ankomme ...&lt;br&gt;
 &lt;&lt;timed 2s transition&gt;&gt;
 ... näher ... &lt;br&gt;&lt;&lt;next&gt;&gt;
 ... und näher ...&lt;br&gt;&lt;&lt;next&gt;&gt;
@@ -336,17 +337,92 @@ Soll ich [[weiter überlegen|awake04]] ?
 
 
 /* dreamland - entry 03 */
-/* ----------------------- */</tw-passagedata><tw-passagedata pid="14" name="dreamentry03" tags="" position="450,400" size="100,100">Ich fühle mich wohl im Land der Träume. Hier könnte ich ewig bleiben.&lt;br&gt;
+/* ----------------------- */</tw-passagedata><tw-passagedata pid="14" name="dreamentry03" tags="" position="300,600" size="100,100">Ich fühle mich wohl im Land der Träume. Hier könnte ich ewig bleiben.&lt;br&gt;
 Aber ich muss weiter, denn ich muss ja die Telefonnummer herausfinden.
 &lt;br&gt;
 &lt;br&gt;
-Soll ich [[einfach weiterträumen|dreamentry03]] oder soll ich mich [[im Land der Träume umschauen|dreammaze]]
+Soll ich [[einfach weiterträumen|dreamentry03]] oder soll ich mich [[im Land der Träume umschauen|dreamtunnel01]]
+
+
+/* dreamland - tunnel 01 */
+/* ----------------------- */</tw-passagedata><tw-passagedata pid="15" name="dreamtunnel01" tags="" position="0,750" size="100,100">&lt;&lt;if visited() == 1&gt;&gt;
+Hoppla, wo bin ich nun wieder gelandet ?&lt;br&gt;
+Irgendwie ist das nicht, was ich erwartet habe ...&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+Ich stehe irgendwo im Untergrund in einem Abwasserkanalsystem auf einer Brücke,&lt;br&gt;
+es ist ziemlich dunkel und es stinkt fürchterlich.&lt;br&gt;
+&lt;br&gt;
+&lt;&lt;if $dmazetunnel.length == 3 &gt;&gt;
+Jetzt bleibt ja nur noch ein stinkender Kanal übrig ... &lt;br&gt;&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if $dmazetunnel.length == 4 &gt;&gt;
+Und nun ? Bin ich hier endgültig gefangen ?&lt;br&gt;
+&lt;br&gt;
+Ich glaube, ich sollte alles noch einmal [[ganz genau untersuchen.|dreamtunnel03]]&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if not $dmazetunnel.includes( &quot;n&quot; ) &gt;&gt;
+Ein Abwasserkanal geht nach [[Norden|dreamtunnel02][$dmazetunnel.push(&quot;n&quot;)]] weiter.&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if not $dmazetunnel.includes( &quot;e&quot; ) &gt;&gt;
+Ein Abwasserkanal geht nach [[Osten|dreamtunnel02][$dmazetunnel.push(&quot;e&quot;)]] weiter.&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if not $dmazetunnel.includes( &quot;s&quot; ) &gt;&gt;
+Ein Abwasserkanal geht nach [[Süden|dreamtunnel02][$dmazetunnel.push(&quot;s&quot;)]] weiter.&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if not $dmazetunnel.includes( &quot;w&quot; ) &gt;&gt;
+Ein Abwasserkanal geht nach [[Westen|dreamtunnel02][$dmazetunnel.push(&quot;w&quot;)]] weiter.&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;br&gt;&lt;br&gt;
+[img[./images/compass.png]]
+
+
+/* dreamland - tunnel 02 */
+/* ----------------------- */</tw-passagedata><tw-passagedata pid="16" name="dreamtunnel02" tags="" position="150,750" size="100,100">Also hier geht es definitiv nicht weiter ! 
+&lt;&lt;if visited() == 1&gt;&gt;&lt;br&gt;Das ist eine Sackgasse.&lt;br&gt;&lt;&lt;/if&gt;&gt;
+&lt;&lt;if visited() == 2&gt;&gt;&lt;br&gt;Das ist wieder eine Sackgasse.&lt;br&gt;&lt;&lt;/if&gt;&gt;
+&lt;&lt;if visited() == 3&gt;&gt;&lt;br&gt;Der dritte Versuch ist ebenfalls erfolglos.&lt;br&gt;&lt;&lt;/if&gt;&gt;
+&lt;&lt;if visited() == 4&gt;&gt;&lt;br&gt;Und auch im letzen Kanal kommt man nicht weiter.&lt;br&gt;&lt;&lt;/if&gt;&gt;
+&lt;br&gt;
+[[Zurück|dreamtunnel01]]&lt;br&gt;
+&lt;br&gt;&lt;br&gt;
+[img[./images/barrier.png]]
+
+
+/* dreamland - tunnel 03 */
+/* ----------------------- */</tw-passagedata><tw-passagedata pid="17" name="dreamtunnel03" tags="" position="300,750" size="100,100">Also, lass mich alles nochmals genau untersuchen ...&lt;br&gt;&lt;br&gt;
+&lt;span id=&quot;dreamtunnelchecks&quot;&gt;... Im Norden ist nur der Kanal, den ich schon versucht habe ...&lt;br&gt;&lt;br&gt;[img[./images/magnifyingglass.png]]&lt;/span&gt;
+&lt;&lt;timed 5s transition&gt;&gt;
+        &lt;&lt;replace &quot;#dreamtunnelchecks&quot;&gt;&gt;... im Süden ist nur der Kanal, den ich schon auch schon versucht habe ...&lt;br&gt;&lt;br&gt;[img[./images/magnifyingglass.png]]&lt;&lt;/replace&gt;&gt;&lt;&lt;next&gt;&gt;
+        &lt;&lt;replace &quot;#dreamtunnelchecks&quot;&gt;&gt;... den Kanal im Westen habe ich auch schon versucht, sonst ist dort nichts ...&lt;br&gt;&lt;br&gt;[img[./images/magnifyingglass.png]]&lt;&lt;/replace&gt;&gt;&lt;&lt;next&gt;&gt;
+        &lt;&lt;replace &quot;#dreamtunnelchecks&quot;&gt;&gt;... und auch im Osten hat es definitiv nichts ausser dem schon erkundeten Kanal ...&lt;br&gt;&lt;br&gt;[img[./images/magnifyingglass.png]]&lt;&lt;/replace&gt;&gt;&lt;&lt;next&gt;&gt;
+        &lt;&lt;replace &quot;#dreamtunnelchecks&quot;&gt;&gt;... unter mir hat es nur Wasser und sonst überhaupt nichts ...&lt;br&gt;&lt;br&gt;[img[./images/magnifyingglass.png]]&lt;&lt;/replace&gt;&gt;&lt;&lt;next&gt;&gt;
+        &lt;&lt;replace &quot;#dreamtunnelchecks&quot;&gt;&gt;... und über mir hat es ebenfalls nichts ...&lt;br&gt;&lt;br&gt;[img[./images/magnifyingglass.png]]&lt;&lt;/replace&gt;&gt;&lt;&lt;next&gt;&gt;
+        &lt;&lt;replace &quot;#dreamtunnelchecks&quot;&gt;&gt;... Halt Stopp !&lt;br&gt;&lt;br&gt;[img[./images/magnifyingglass.png]]&lt;&lt;/replace&gt;&gt;&lt;&lt;next&gt;&gt;
+        &lt;&lt;replace &quot;#dreamtunnelchecks&quot;&gt;&gt;... Genau über mir hat es eine [[Leiter|dreamtunnel04]] !&lt;br&gt;&lt;br&gt;[img[./images/ladder.png]]&lt;&lt;/replace&gt;&gt;&lt;&lt;next&gt;&gt;
+&lt;&lt;/timed&gt;&gt;
+
+
+/* dreamland - tunnel 04 */
+/* ----------------------- */</tw-passagedata><tw-passagedata pid="18" name="dreamtunnel04" tags="" position="450,750" size="100,100">Vermutlich bin ich einfach eine Ebene zu tief im Land er Träume gelandet. Also ich versuche es mal eine Ebene höher.&lt;br&gt;&lt;br&gt;.
+Ich ergreiffe die Leiter und ...&lt;br&gt;
+&lt;&lt;timed 3s transition&gt;&gt;
+... steige hoch ... &lt;br&gt;&lt;&lt;next&gt;&gt;
+... und höher ...&lt;br&gt;&lt;&lt;next&gt;&gt;
+... und immer höher ...&lt;br&gt;&lt;&lt;next&gt;&gt;
+... bis ich schlussendlich oben einen schweren Kanaldeckel sehe, ...&lt;br&gt;&lt;&lt;next&gt;&gt;
+... den Deckel aufklappe, ...&lt;br&gt;&lt;&lt;next&gt;&gt;
+... durchklettere, ...&lt;br&gt;&lt;&lt;next&gt;&gt;
+... und der Deckel hinter mir wieder zu knallt.&lt;br&gt;&lt;&lt;next&gt;&gt;
+&lt;br&gt;Da gibt es wohl kein zurück mehr.&lt;br&gt;&lt;br&gt;&lt;&lt;next&gt;&gt;
+Ich glaube ich bin nun auf der richtigen Ebene [[angekommen|dreammaze]].&lt;br&gt;&lt;&lt;next&gt;&gt;
+&lt;&lt;/timed&gt;&gt;
 
 
 /* dreaming phase */
 /* ======================= */
 /* dreamland - maze        */
-/* ----------------------- */</tw-passagedata><tw-passagedata pid="15" name="dreammaze" tags="" position="600,400" size="100,100">&lt;&lt;if visited() == 1&gt;&gt;
+/* ----------------------- */</tw-passagedata><tw-passagedata pid="19" name="dreammaze" tags="" position="0,950" size="100,100">&lt;&lt;if visited() == 1&gt;&gt;
 &lt;&lt;run setup.shownewhint() &gt;&gt;
 &lt;&lt;run setup.shownewhint() &gt;&gt;
 &lt;&lt;run setup.shownewhint() &gt;&gt;
@@ -360,7 +436,9 @@ Neben den Strassen sehe ich Masten mit Telefonleitungen.&lt;br&gt;
 &lt;&lt;set $act_coord to &quot;&quot; + $dmazex + &quot;-&quot; + $dmazey &gt;&gt;
 &lt;&lt;if $dmazehits.includes( $act_coord ) and $dmazeobjectstaken[$act_coord] == false&gt;&gt;
 &lt;br&gt;Hey, da ist ja &lt;&lt;print setup.getdmazeobjectstext( $act_coord ) &gt;&gt;. Soll ich das Objekt weiter [[untersuchen|setup.getdmazeobjectspassage( $act_coord )]] ?&lt;br&gt;
-&lt;&lt;else&gt;&gt;&lt;br&gt;Ich sehe hier aber nichts interessantes.&lt;br&gt;&lt;&lt;/if&gt;&gt;
+&lt;&lt;else&gt;&gt;
+&lt;br&gt;Ich sehe hier aber nichts interessantes.&lt;br&gt;
+&lt;&lt;/if&gt;&gt;
 
 &lt;br&gt;
 Gehe weiter nach&lt;br&gt;
@@ -371,13 +449,15 @@ Gehe weiter nach&lt;br&gt;
 &lt;&lt;if $dmazehits.includes( $act_coord ) and $dmazeobjectstaken[$act_coord] == false&gt;&gt;
 &lt;br&gt;&lt;br&gt;
 [img[setup.getdmazeobjectsimage( $act_coord )]]
+&lt;&lt;else&gt;&gt;
+[img[./images/crossing.png]]
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;include &quot;shownumberstatus&quot;&gt;&gt;
 &lt;&lt;include &quot;showmazemap&quot;&gt;&gt;
 
 
 /* dreamland - handset found */
-/* ------------------------- */</tw-passagedata><tw-passagedata pid="16" name="dmaze-handset" tags="" position="750,400" size="100,100">&lt;&lt;if visited() == 1&gt;&gt;
+/* ------------------------- */</tw-passagedata><tw-passagedata pid="20" name="dmaze-handset" tags="" position="450,1150" size="100,100">&lt;&lt;if visited() == 1&gt;&gt;
 &lt;&lt;run setup.shownewhint() &gt;&gt;
 @@color:red;Cool, mir ist wieder ein Teil der Nummer eingefallen !@@&lt;br&gt;
 &lt;br&gt;
@@ -393,7 +473,7 @@ Soll ich den Telefonhörer [[mitnehmen|dmaze-handset-pickup]] ?&lt;br&gt;
 
 
 /* dreamland - handset pickup */
-/* -------------------------- */</tw-passagedata><tw-passagedata pid="17" name="dmaze-handset-pickup" tags="" position="850,225" size="100,100">So, den Telefonhörer habe ich mal eingepackt, vielleicht ist der ja noch nützlich.&lt;br&gt;
+/* -------------------------- */</tw-passagedata><tw-passagedata pid="21" name="dmaze-handset-pickup" tags="" position="300,1150" size="100,100">So, den Telefonhörer habe ich mal eingepackt, vielleicht ist der ja noch nützlich.&lt;br&gt;
 &lt;&lt;set $dmazeobjectstaken[$act_coord] to true&gt;&gt;
 &lt;&lt;set $dmazeobjectsinv.push(&quot;dmaze-handset&quot;) &gt;&gt;
 &lt;br&gt;
@@ -404,7 +484,7 @@ Soll ich den Telefonhörer [[mitnehmen|dmaze-handset-pickup]] ?&lt;br&gt;
 
 
 /* dreamland - dial found     */
-/* -------------------------- */</tw-passagedata><tw-passagedata pid="18" name="dmaze-dial" tags="" position="900,400" size="100,100">&lt;&lt;if visited() == 1&gt;&gt;
+/* -------------------------- */</tw-passagedata><tw-passagedata pid="22" name="dmaze-dial" tags="" position="450,1025" size="100,100">&lt;&lt;if visited() == 1&gt;&gt;
 &lt;&lt;run setup.shownewhint() &gt;&gt;
 @@color:red;Cool, mir ist wieder ein Teil der Nummer eingefallen !@@&lt;br&gt;
 &lt;br&gt;
@@ -420,7 +500,7 @@ Soll ich die Wählscheibe [[einpacken|dmaze-dial-pickup]] ?&lt;br&gt;
 
 
 /* dreamland - dial pickup    */
-/* -------------------------- */</tw-passagedata><tw-passagedata pid="19" name="dmaze-dial-pickup" tags="" position="1100,225" size="100,100">Ich habe die Wählscheibe eingepackt. Vielleicht finde ich sogar noch ein passendes Telefon dazu.&lt;br&gt;
+/* -------------------------- */</tw-passagedata><tw-passagedata pid="23" name="dmaze-dial-pickup" tags="" position="300,1025" size="100,100">Ich habe die Wählscheibe eingepackt. Vielleicht finde ich sogar noch ein passendes Telefon dazu.&lt;br&gt;
 &lt;&lt;set $dmazeobjectstaken[$act_coord] to true&gt;&gt;
 &lt;&lt;set $dmazeobjectsinv.push(&quot;dmaze-dial&quot;) &gt;&gt;
 &lt;br&gt;
@@ -431,7 +511,7 @@ Soll ich die Wählscheibe [[einpacken|dmaze-dial-pickup]] ?&lt;br&gt;
 
 
 /* dreamland - cable found    */
-/* -------------------------- */</tw-passagedata><tw-passagedata pid="20" name="dmaze-cable" tags="" position="600,400" size="100,100">&lt;&lt;if visited() == 1&gt;&gt;
+/* -------------------------- */</tw-passagedata><tw-passagedata pid="24" name="dmaze-cable" tags="" position="450,900" size="100,100">&lt;&lt;if visited() == 1&gt;&gt;
 &lt;&lt;run setup.shownewhint() &gt;&gt;
 @@color:red;Cool, mir ist wieder ein Teil der Nummer eingefallen !@@&lt;br&gt;
 &lt;br&gt;
@@ -447,7 +527,7 @@ Soll ich das Kabel [[einpacken|dmaze-cable-pickup]] ?&lt;br&gt;
 
 
 /* dreamland - cable pickup   */
-/* -------------------------- */</tw-passagedata><tw-passagedata pid="21" name="dmaze-cable-pickup" tags="" position="100,350" size="100,100">Mal schauen, ob ich das Kabel irgendwo brauchen kann, es ist nun in meiner Tasche.&lt;br&gt;
+/* -------------------------- */</tw-passagedata><tw-passagedata pid="25" name="dmaze-cable-pickup" tags="" position="300,900" size="100,100">Mal schauen, ob ich das Kabel irgendwo brauchen kann, es ist nun in meiner Tasche.&lt;br&gt;
 &lt;&lt;set $dmazeobjectstaken[$act_coord] to true&gt;&gt;
 &lt;&lt;set $dmazeobjectsinv.push(&quot;dmaze-cable&quot;) &gt;&gt;
 &lt;br&gt;
@@ -458,7 +538,7 @@ Soll ich das Kabel [[einpacken|dmaze-cable-pickup]] ?&lt;br&gt;
 
 
 /* dreamland - phonecard found  */
-/* ---------------------------- */</tw-passagedata><tw-passagedata pid="22" name="dmaze-phonecard" tags="" position="225,350" size="100,100">&lt;&lt;if visited() == 1&gt;&gt;
+/* ---------------------------- */</tw-passagedata><tw-passagedata pid="26" name="dmaze-phonecard" tags="" position="450,1275" size="100,100">&lt;&lt;if visited() == 1&gt;&gt;
 &lt;&lt;run setup.shownewhint() &gt;&gt;
 @@color:red;Cool, mir ist wieder ein Teil der Nummer eingefallen !@@&lt;br&gt;
 &lt;br&gt;
@@ -474,7 +554,7 @@ Soll ich die Telefonkarte [[mitnehmen|dmaze-phonecard-pickup]] ?&lt;br&gt;
 
 
 /* dreamland - phonecard pickup  */
-/* ---------------------------- */</tw-passagedata><tw-passagedata pid="23" name="dmaze-phonecard-pickup" tags="" position="350,350" size="100,100">Ich nehme die Telefonkarte besser mal mit. Ist eingepackt !&lt;br&gt;
+/* ---------------------------- */</tw-passagedata><tw-passagedata pid="27" name="dmaze-phonecard-pickup" tags="" position="300,1275" size="100,100">Ich nehme die Telefonkarte besser mal mit. Ist eingepackt !&lt;br&gt;
 &lt;&lt;set $dmazeobjectstaken[$act_coord] to true&gt;&gt;
 &lt;&lt;set $dmazeobjectsinv.push(&quot;dmaze-phonecard&quot;) &gt;&gt;
 &lt;br&gt;
@@ -485,7 +565,7 @@ Soll ich die Telefonkarte [[mitnehmen|dmaze-phonecard-pickup]] ?&lt;br&gt;
 
 
 /* dreamland - booth            */
-/* ---------------------------- */</tw-passagedata><tw-passagedata pid="24" name="dmaze-booth" tags="" position="475,350" size="100,100">&lt;&lt;if visited() == 1&gt;&gt;
+/* ---------------------------- */</tw-passagedata><tw-passagedata pid="28" name="dmaze-booth" tags="" position="150,1425" size="100,100">&lt;&lt;if visited() == 1&gt;&gt;
 &lt;&lt;run setup.shownewhint() &gt;&gt;
 @@color:red;Cool, mir ist wieder ein Teil der Nummer eingefallen !@@&lt;br&gt;
 &lt;br&gt;
@@ -544,7 +624,7 @@ Wollen wir es ausprobieren und eine Nummer [[wählen|dmaze-booth-dialing01]] ?&l
 
 
 /* dreamland - booth - handset  */
-/* ---------------------------- */</tw-passagedata><tw-passagedata pid="25" name="dmaze-handset-use" tags="" position="600,350" size="100,100">&lt;&lt;if $dmazeobjectsbooth.includes( &quot;dmaze-cable&quot; )&gt;&gt;
+/* ---------------------------- */</tw-passagedata><tw-passagedata pid="29" name="dmaze-handset-use" tags="" position="300,1675" size="100,100">&lt;&lt;if $dmazeobjectsbooth.includes( &quot;dmaze-cable&quot; )&gt;&gt;
 &lt;&lt;run setup.shownewhint() &gt;&gt;
 @@color:red;Cool, mir ist wieder ein Teil der Nummer eingefallen !@@&lt;br&gt;
 &lt;br&gt;
@@ -560,7 +640,7 @@ Ich kann den Telefonhörer nicht direkt am Telefon anschliessen, da fehlt noch e
 
 
 /* dreamland - booth - dial  */
-/* ---------------------------- */</tw-passagedata><tw-passagedata pid="26" name="dmaze-dial-use" tags="" position="725,350" size="100,100">&lt;&lt;run setup.shownewhint() &gt;&gt;
+/* ---------------------------- */</tw-passagedata><tw-passagedata pid="30" name="dmaze-dial-use" tags="" position="300,1550" size="100,100">&lt;&lt;run setup.shownewhint() &gt;&gt;
 @@color:red;Cool, mir ist wieder ein Teil der Nummer eingefallen !@@&lt;br&gt;
 &lt;br&gt;
 Ich montiere die Wählscheibe auf dem Telefon !&lt;br&gt;
@@ -572,7 +652,7 @@ Ich montiere die Wählscheibe auf dem Telefon !&lt;br&gt;
 
 
 /* dreamland - booth - cable  */
-/* ---------------------------- */</tw-passagedata><tw-passagedata pid="27" name="dmaze-cable-use" tags="" position="850,350" size="100,100">&lt;&lt;run setup.shownewhint() &gt;&gt;
+/* ---------------------------- */</tw-passagedata><tw-passagedata pid="31" name="dmaze-cable-use" tags="" position="300,1425" size="100,100">&lt;&lt;run setup.shownewhint() &gt;&gt;
 @@color:red;Cool, mir ist wieder ein Teil der Nummer eingefallen !@@&lt;br&gt;
 &lt;br&gt;
 Ich verbinde das Kabel mit dem Telefon !&lt;br&gt;
@@ -584,7 +664,7 @@ Ich verbinde das Kabel mit dem Telefon !&lt;br&gt;
 
 
 /* dreamland - booth - dialing 01 */
-/* ----------------------------- */</tw-passagedata><tw-passagedata pid="28" name="dmaze-booth-dialing01" tags="" position="975,350" size="100,100">Das Telefon hat keine Einwurfschlitze für Münz, nur einen Schlitz für eine Telefonkarte.&lt;br&gt;
+/* ----------------------------- */</tw-passagedata><tw-passagedata pid="32" name="dmaze-booth-dialing01" tags="" position="150,1825" size="100,100">Das Telefon hat keine Einwurfschlitze für Münz, nur einen Schlitz für eine Telefonkarte.&lt;br&gt;
 &lt;&lt;if $dmazeobjectsinv.includes( &quot;dmaze-phonecard&quot; ) &gt;&gt;
 &lt;br&gt;Zum Glück habe ich eine Telefonkarte gefunden, vielleicht [[funktioniert|dmaze-booth-dialing02]] die ja noch.&lt;br&gt;
 &lt;&lt;else&gt;&gt;
@@ -593,8 +673,9 @@ Und ich habe nur Münz dabei.
  &lt;br&gt;[[weiter|dmaze-booth]]
 &lt;&lt;include &quot;shownumberstatus&quot;&gt;&gt;
 
+
 /* dreamland - booth - dialing 02 */
-/* ----------------------------- */</tw-passagedata><tw-passagedata pid="29" name="dmaze-booth-dialing02" tags="" position="1100,350" size="100,100">&lt;&lt;run setup.shownewhint() &gt;&gt;
+/* ----------------------------- */</tw-passagedata><tw-passagedata pid="33" name="dmaze-booth-dialing02" tags="" position="300,1825" size="100,100">&lt;&lt;run setup.shownewhint() &gt;&gt;
 @@color:red;Cool, mir ist der letzte Teil der Nummer eingefallen !@@&lt;br&gt;
 &lt;br&gt;
 Ich stecke die Telefonkarte ein und warte ...&lt;br&gt;
@@ -611,7 +692,7 @@ Ich wähle die Nummer $number ...&lt;br&gt;&lt;&lt;next&gt;&gt;
 
 
 /* dreamland - booth - finishing */
-/* ----------------------------- */</tw-passagedata><tw-passagedata pid="30" name="dmaze-booth-finishing" tags="" position="1225,350" size="100,100">Das Wählen der Nummmer geht in der Traumwelt natürlich nicht.&lt;br&gt;
+/* ----------------------------- */</tw-passagedata><tw-passagedata pid="34" name="dmaze-booth-finishing" tags="" position="450,1825" size="100,100">Das Wählen der Nummmer geht in der Traumwelt natürlich nicht.&lt;br&gt;
 Das musst Du schon mit einem richtigen Telefon machen. Und, ein Tipp von mir: mach das, wenn Du wirklich wach bist.&lt;br&gt;
 &lt;br&gt;Die nötige Nummer hast Du jetzt ja:&lt;br&gt;
 &amp;emsp;&amp;emsp;$number&lt;br&gt;
@@ -628,13 +709,13 @@ Gruss&lt;br&gt;
 
 
 /* include - show number found so far */
-/* ---------------------------------- */</tw-passagedata><tw-passagedata pid="31" name="shownumberstatus" tags="" position="750,0" size="100,100">&lt;hr&gt;
+/* ---------------------------------- */</tw-passagedata><tw-passagedata pid="35" name="shownumberstatus" tags="" position="725,150" size="100,100">&lt;hr&gt;
 Soviel weiss ich schon von der Nummer: $number&lt;br&gt;
 &lt;&lt;include &quot;showinventory&quot;&gt;&gt;
 
 
 /* include - show inventory           */
-/* ---------------------------------- */</tw-passagedata><tw-passagedata pid="32" name="showinventory" tags="" position="225,475" size="100,100">&lt;br&gt;
+/* ---------------------------------- */</tw-passagedata><tw-passagedata pid="36" name="showinventory" tags="" position="975,150" size="100,100">&lt;br&gt;
 Ich habe folgendes dabei:&lt;br&gt;
 &lt;&lt;if $dmazeobjectsinv.length == 0&gt;&gt;
 nichts&lt;br&gt;
@@ -650,7 +731,7 @@ nichts&lt;br&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;if $dmazeobjectsinv.includes( &quot;dmaze-phonecard&quot; )&gt;&gt;
 - Telefonkarte&lt;br&gt;
-&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="33" name="showmazemap" tags="" position="350,475" size="100,100">&lt;hr&gt;
+&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="37" name="showmazemap" tags="" position="850,150" size="100,100">&lt;hr&gt;
 Karte Traumland:&lt;br&gt;
 &lt;&lt;for _i to $dmazeymax; _i gte 0; _i--&gt;&gt;
 &lt;&lt;for _j to 0; _j lte $dmazexmax; _j++&gt;&gt;
