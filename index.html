@@ -98,7 +98,7 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
 		<div id="init-lacking"><p>Browser lacks capabilities required to play.</p><p>Upgrade or switch to another browser.</p></div>
 		<div id="init-loading"><div>Loading&hellip;</div></div>
 	</div>
-	<!-- UUID://AB4ACCC2-BF19-460C-A563-FC67F551B88E// --><tw-storydata name="(Alb)Traumreise - kok" startnode="4" creator="Tweego" creator-version="2.1.1+81d1d71" ifid="AB4ACCC2-BF19-460C-A563-FC67F551B88E" zoom="1" format="SugarCube" format-version="2.36.1" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css"></style><script role="script" id="twine-user-script" type="text/twine-javascript">/* Configuration */
+	<!-- UUID://AB4ACCC2-BF19-460C-A563-FC67F551B88E// --><tw-storydata name="(Alb)Traumreise - kok" startnode="19" creator="Tweego" creator-version="2.1.1+81d1d71" ifid="AB4ACCC2-BF19-460C-A563-FC67F551B88E" zoom="1" format="SugarCube" format-version="2.36.1" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css"></style><script role="script" id="twine-user-script" type="text/twine-javascript">/* Configuration */
 Config.passages.nobr = true;
 
 /* show additional hints */
@@ -131,18 +131,45 @@ setup.getdmazeobjectstaken = function(txt) {
 &lt;&lt;set $myhints to [ &quot;Kw&quot;, &quot;NA&quot;, &quot;MQ&quot;, &quot;NA&quot;, &quot;MQ&quot;, &quot;NQ&quot;, &quot;MA&quot;, &quot;OA&quot;, &quot;NQ&quot;, &quot;NA&quot;, &quot;Mg&quot;, &quot;Ng&quot; ] &gt;&gt;
 &lt;&lt;set $numhints to -1&gt;&gt;
 &lt;&lt;set $number to &#39;&#39;&gt;&gt;
+
+/* dmaze definitions */
+/* ----------------- */
+/* various */
 &lt;&lt;set $dmazetunnel to []&gt;&gt;
-&lt;&lt;set $dmazex to 4&gt;&gt;
 &lt;&lt;set $dmazexmax to 9&gt;&gt;
-&lt;&lt;set $dmazey to 4&gt;&gt;
 &lt;&lt;set $dmazeymax to 9&gt;&gt;
-&lt;&lt;set $dmazehits to [ &quot;1-1&quot; , &quot;2-2&quot; , &quot;3-3&quot;, &quot;5-5&quot;, &quot;6-6&quot; ]&gt;&gt;
-&lt;&lt;set $dmazeobjectstext to { &quot;1-1&quot; : &quot;ein Kabel&quot;, &quot;2-2&quot; : &quot;eine Wählscheibe&quot;, &quot;3-3&quot; : &quot;ein Telefonhörer&quot;, &quot;5-5&quot; : &quot;eine Telefonkabine&quot;, &quot;6-6&quot; : &quot;eine Telefonkarte&quot; }&gt;&gt;
-&lt;&lt;set $dmazeobjectspassage to { &quot;1-1&quot; : &quot;dmaze-cable&quot;, &quot;2-2&quot; : &quot;dmaze-dial&quot;, &quot;3-3&quot; : &quot;dmaze-handset&quot;, &quot;5-5&quot; : &quot;dmaze-booth&quot; , &quot;6-6&quot; : &quot;dmaze-phonecard&quot; }&gt;&gt;
-&lt;&lt;set $dmazeobjectsimage to { &quot;1-1&quot; : &quot;./images/cable.png&quot;, &quot;2-2&quot; : &quot;./images/dial.png&quot;, &quot;3-3&quot; : &quot;./images/handset.png&quot;, &quot;5-5&quot; : &quot;./images/phonebooth.png&quot; , &quot;6-6&quot; : &quot;./images/phonecard.png&quot; }&gt;&gt;
-&lt;&lt;set $dmazeobjectstaken to { &quot;1-1&quot; : false, &quot;2-2&quot; : false, &quot;3-3&quot; : false , &quot;5-5&quot; :  false , &quot;6-6&quot; : false }&gt;&gt;
 &lt;&lt;set $dmazeobjectsinv to []&gt;&gt;
-&lt;&lt;set $dmazeobjectsbooth to []&gt;&gt;</tw-passagedata><tw-passagedata pid="2" name="dummy" tags="" position="1125,0" size="100,100">pass 
+&lt;&lt;set $dmazeobjectsbooth to []&gt;&gt;
+/* random locations */
+&lt;&lt;for $dmazehits to [];$dmazehits.length &lt; 5;&gt;&gt;
+  &lt;&lt;set $randomx to random(0,$dmazexmax )&gt;&gt;
+  &lt;&lt;set $randomy to random(0,$dmazeymax )&gt;&gt;
+  &lt;&lt;set $newrandomcoord to &quot;&quot; + $randomx + &quot;-&quot; + $randomy &gt;&gt;
+  &lt;&lt;if not $dmazehits.includes( $newrandomcoord )&gt;&gt;
+    &lt;&lt;run $dmazehits.push( $newrandomcoord )&gt;&gt;
+  &lt;&lt;/if&gt;&gt;
+&lt;&lt;/for&gt;&gt;
+/* fill variables for objects */
+&lt;&lt;set $dmazeobjectstaken to { }&gt;&gt;
+&lt;&lt;set $dmazeobjectstext_list to [ &quot;ein Kabel&quot;, &quot;eine Wählscheibe&quot;, &quot;ein Telefonhörer&quot;, &quot;eine Telefonkabine&quot;, &quot;eine Telefonkarte&quot; ]&gt;&gt;
+&lt;&lt;set $dmazeobjectspassage to { }&gt;&gt;
+&lt;&lt;set $dmazeobjectspassage_list to [ &quot;dmaze-cable&quot;, &quot;dmaze-dial&quot;, &quot;dmaze-handset&quot;, &quot;dmaze-booth&quot; , &quot;dmaze-phonecard&quot; ]&gt;&gt;
+&lt;&lt;set $dmazeobjectsimage to { }&gt;&gt;
+&lt;&lt;set $dmazeobjectsimage_list to [ &quot;./images/cable.png&quot;, &quot;./images/dial.png&quot;, &quot;./images/handset.png&quot;, &quot;./images/phonebooth.png&quot; , &quot;./images/phonecard.png&quot; ]&gt;&gt;
+&lt;&lt;set $dmazeobjectstext to { }&gt;&gt;
+&lt;&lt;for _i to 0; _i lte 5; _i++&gt;&gt;
+  &lt;&lt;set $dmazeobjectstext[$dmazehits[_i]] to $dmazeobjectstext_list[_i]&gt;&gt;
+  &lt;&lt;set $dmazeobjectspassage[$dmazehits[_i]] to $dmazeobjectspassage_list[_i]&gt;&gt;
+  &lt;&lt;set $dmazeobjectsimage[$dmazehits[_i]] to $dmazeobjectsimage_list[_i]&gt;&gt;
+  &lt;&lt;set $dmazeobjectstaken[$dmazehits[_i]] to false&gt;&gt;
+&lt;&lt;/for&gt;&gt;
+/* random start position */
+&lt;&lt;set $dmazex to random(0,$dmazexmax )&gt;&gt;
+&lt;&lt;set $dmazey to random(0,$dmazeymax )&gt;&gt;
+&lt;&lt;for $newrandomcoord to &quot;&quot; + $dmazex + &quot;-&quot; + $dmazey;$dmazehits.includes( $newrandomcoord );&gt;&gt;
+  &lt;&lt;set $dmazex to random(0,$dmazexmax )&gt;&gt;
+  &lt;&lt;set $dmazey to random(0,$dmazeymax )&gt;&gt;
+&lt;&lt;/for&gt;&gt;</tw-passagedata><tw-passagedata pid="2" name="dummy" tags="" position="1125,0" size="100,100">pass 
 ( Comments not allowed in section with StoryData, StoryInit, StoryTitle.
   Therefore create empty passage which is not used)
 
@@ -404,7 +431,7 @@ Ein Abwasserkanal geht nach [[Westen|dreamtunnel02][$dmazetunnel.push(&quot;w&qu
 
 
 /* dreamland - tunnel 04 */
-/* ----------------------- */</tw-passagedata><tw-passagedata pid="18" name="dreamtunnel04" tags="" position="450,750" size="100,100">Vermutlich bin ich einfach eine Ebene zu tief im Land er Träume gelandet. Also ich versuche es mal eine Ebene höher.&lt;br&gt;&lt;br&gt;.
+/* ----------------------- */</tw-passagedata><tw-passagedata pid="18" name="dreamtunnel04" tags="" position="450,750" size="100,100">Vermutlich bin ich einfach eine Ebene zu tief im Land er Träume gelandet. Also ich versuche es mal eine Ebene höher.&lt;br&gt;&lt;br&gt;
 Ich ergreiffe die Leiter und ...&lt;br&gt;
 &lt;&lt;timed 3s transition&gt;&gt;
 ... steige hoch ... &lt;br&gt;&lt;&lt;next&gt;&gt;
@@ -442,12 +469,11 @@ Neben den Strassen sehe ich Masten mit Telefonleitungen.&lt;br&gt;
 
 &lt;br&gt;
 Gehe weiter nach&lt;br&gt;
-&lt;&lt;if $dmazex &gt; 0 &gt;&gt;[[Westen|dreammaze][$dmazex to $dmazex - 1]]&lt;br&gt;&lt;&lt;/if&gt;&gt;
-&lt;&lt;if $dmazex &lt; $dmazexmax &gt;&gt;[[Osten|dreammaze][$dmazex to $dmazex + 1]]&lt;br&gt;&lt;&lt;/if&gt;&gt;
-&lt;&lt;if $dmazey &gt; 0 &gt;&gt;[[Süden|dreammaze][$dmazey to $dmazey - 1]]&lt;br&gt;&lt;&lt;/if&gt;&gt;
-&lt;&lt;if $dmazey &lt; $dmazeymax &gt;&gt;[[Norden|dreammaze][$dmazey to $dmazey + 1]]&lt;br&gt;&lt;&lt;/if&gt;&gt;
-&lt;&lt;if $dmazehits.includes( $act_coord ) and $dmazeobjectstaken[$act_coord] == false&gt;&gt;
-&lt;br&gt;&lt;br&gt;
+- &lt;&lt;if $dmazey &lt; $dmazeymax &gt;&gt;[[Norden|dreammaze][$dmazey to $dmazey + 1]]&lt;&lt;else&gt;&gt;Norden&lt;&lt;/if&gt;&gt;&lt;br&gt;
+- &lt;&lt;if $dmazey &gt; 0 &gt;&gt;[[Süden|dreammaze][$dmazey to $dmazey - 1]]&lt;&lt;else&gt;&gt;Süden&lt;&lt;/if&gt;&gt;&lt;br&gt;
+- &lt;&lt;if $dmazex &gt; 0 &gt;&gt;[[Westen|dreammaze][$dmazex to $dmazex - 1]]&lt;&lt;else&gt;&gt;Westen&lt;&lt;/if&gt;&gt;&lt;br&gt;
+- &lt;&lt;if $dmazex &lt; $dmazexmax &gt;&gt;[[Osten|dreammaze][$dmazex to $dmazex + 1]]&lt;&lt;else&gt;&gt;Osten&lt;&lt;/if&gt;&gt;&lt;br&gt;
+&lt;br&gt;&lt;&lt;if $dmazehits.includes( $act_coord ) and $dmazeobjectstaken[$act_coord] == false&gt;&gt;
 [img[setup.getdmazeobjectsimage( $act_coord )]]
 &lt;&lt;else&gt;&gt;
 [img[./images/crossing.png]]
